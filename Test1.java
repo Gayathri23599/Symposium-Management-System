@@ -3,13 +3,15 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-public class Test1 implements ActionListener{
+public class Test1 implements ActionListener,Serializable{
 	JRadioButton b1,b2;
+	JFrame f;
+	ButtonGroup bg;
 	Test1(){
-		JFrame f = new JFrame();
+		f = new JFrame();
 		b1 = new JRadioButton("Admin");
 		b2 = new JRadioButton("Attendee");
-		ButtonGroup bg = new ButtonGroup();
+		bg = new ButtonGroup();
 		bg.add(b1);
 		bg.add(b2);
 		f.setLayout(new FlowLayout());
@@ -22,6 +24,14 @@ public class Test1 implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
+		/*ObjectOutputStream out = null;
+		try{
+			out = new ObjectOutputStream(new FileOutputStream("data.txt"));
+		}
+		catch(IOException ioexception){
+			System.err.println("IOException");
+			System.exit(0);
+		}
 		if(e.getSource()==b1){
 			int a = Integer.parseInt(JOptionPane.showInputDialog("1:Count 2:Setting data"));
 			if(a == 1){
@@ -38,11 +48,43 @@ public class Test1 implements ActionListener{
 		}
 		if(e.getSource()==b2){
 			int b = Integer.parseInt(JOptionPane.showInputDialog("1:Workshop 2:Event"));
+			if(b == 1){
+				Workshop w = new Workshop();
+				w.name = JOptionPane.showInputDialog("Enter your name");
+				w.college = JOptionPane.showInputDialog("Enter your college");
+				w.dept = JOptionPane.showInputDialog("Enter your department");
+				w.roll = Integer.parseInt(JOptionPane.showInputDialog("Enter your roll number"));
+				w.year = Integer.parseInt(JOptionPane.showInputDialog("Enter your year of study"));
+				w.w_name = JOptionPane.showInputDialog("Enter the workshop attending");
+				w.w_count++;
+				w.fee_payment = false;
+				w.attendence = false;
+				try{
+					out.writeObject(w);
+				}
+				catch(IOException ioexception){
+					System.err.println("IOException 1");
+				}
+				catch(NoSuchElementException no){
+					System.err.println("No Such Element Exception");
+				}
+			}
+		}*/
+		if(e.getSource()==b1){
+			f.setVisible(false);
+			JFrame f1 = new JFrame("Admin");
+			f1.setLayout(new FlowLayout());
+			ButtonGroup bg1 = new ButtonGroup();
+			JRadioButton b3 = new JRadioButton("Count");
+			bg1.add(b3);
+			f1.add(b3);
+			f1.setSize(250,250);
+			f1.setVisible(true);
 		}
 	}
 	public static void main(String []args){
 		new Test1();
-		Scanner inp = new Scanner(System.in);
+		/*Scanner inp = new Scanner(System.in);
 		int m = 1;
 		while(m == 1){
 			System.out.println("1:Admin login 2:User login");
@@ -100,6 +142,6 @@ public class Test1 implements ActionListener{
 			}
 			System.out.println("1:Continue 2:Exit");
 			m = inp.nextInt();
-		}
+		}*/
 	}
 }
