@@ -75,7 +75,7 @@ public class Test2 implements ActionListener{
 		new Test2();
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","joker@23599");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/data","root","");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM details");
 			while(rs.next()){
